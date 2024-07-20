@@ -39,7 +39,7 @@ function AuthHomeScreen({navigation}: AuthHomeScreenProps) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 1.5,
+    margin: 30,
     alignItems: 'center',
   },
   imageContainer: {
