@@ -31,7 +31,7 @@ function useForm<T>({initialValue, validate}: useFormProps<T>) {
 
     return {value, onChangeText, onBlur};
   };
-
+   
   useEffect(() => {
     const newErrors = validate(values);
     setErrors(newErrors);

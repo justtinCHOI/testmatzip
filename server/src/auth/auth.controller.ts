@@ -22,6 +22,7 @@ export class AuthController {
 
   @Post('/signup')
   signup(@Body(ValidationPipe) authDto: AuthDto) {
+    console.log('signup', authDto);
     return this.authService.signup(authDto);
   }
 
