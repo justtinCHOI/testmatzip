@@ -1,7 +1,7 @@
 import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 
-function CalendarHomeScreen(){
+function CalendarHomeScreen() {
   return (
     <View>
       <Text>캘린더</Text>

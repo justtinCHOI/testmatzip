@@ -1,33 +1,26 @@
 import React, {useRef} from 'react';
-import {StyleSheet, View} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import InputField from '../../components/InputField';
-import CustomButton from '../../components/CustomButton';
-import useForm from '../../hooks/useForm';
-import {validateSignup} from '../../utils';
-import {TextInput} from 'react-native-gesture-handler';
-import useAuth from '../../hooks/queries/useAuth';
+import {SafeAreaView, StyleSheet, TextInput, View} from 'react-native';
+import InputField from '@/components/InputField';
+import CustomButton from '@/components/CustomButton';
+import useForm from '@/hooks/useForm';
+import useAuth from '@/hooks/queries/useAuth';
+import {validateSignup} from '@/utils';
 
 function SignupScreen() {
   const passwordRef = useRef<TextInput | null>(null);
   const passwordConfirmRef = useRef<TextInput | null>(null);
   const {signupMutation, loginMutation} = useAuth();
-
   const signup = useForm({
     initialValue: {email: '', password: '', passwordConfirm: ''},
     validate: validateSignup,
   });
 
   const handleSubmit = () => {
-    console.log('signup handleSubmit', signup.values);
     const {email, password} = signup.values;
     signupMutation.mutate(
       {email, password},
       {
-        onSuccess: () => {
-          console.log('handleSubmit onSuccess');
-          loginMutation.mutate({email, password});
-        },
+        onSuccess: () => loginMutation.mutate({email, password}),
       },
     );
   };
@@ -65,16 +58,11 @@ function SignupScreen() {
           touched={signup.touched.passwordConfirm}
           secureTextEntry
           returnKeyType="join"
-          blurOnSubmit={false}
+          onSubmitEditing={handleSubmit}
           {...signup.getTextInputProps('passwordConfirm')}
         />
       </View>
-      <CustomButton
-        label="회원가입"
-        variant="filled"
-        size="large"
-        onPress={handleSubmit}
-      />
+      <CustomButton label="회원가입" onPress={handleSubmit} />
     </SafeAreaView>
   );
 }

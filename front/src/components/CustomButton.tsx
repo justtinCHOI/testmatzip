@@ -2,10 +2,10 @@ import React from 'react';
 import {
   Pressable,
   StyleSheet,
-  View,
   Text,
   PressableProps,
   Dimensions,
+  View,
 } from 'react-native';
 import {colors} from '../constants';
 
@@ -30,7 +30,6 @@ function CustomButton({
       disabled={inValid}
       style={({pressed}) => [
         styles.container,
-
         pressed ? styles[`${variant}Pressed`] : styles[variant],
         inValid && styles.inValid,
       ]}
@@ -45,8 +44,8 @@ function CustomButton({
 const styles = StyleSheet.create({
   container: {
     borderRadius: 3,
-    justifyContent: 'center',
     flexDirection: 'row',
+    justifyContent: 'center',
   },
   inValid: {
     opacity: 0.5,
@@ -70,19 +69,19 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingVertical: deviceHeight > 700 ? 15 : 10,
     alignItems: 'center',
-    justifyContent: 'center',
     flexDirection: 'row',
+    justifyContent: 'center',
   },
   medium: {
     width: '50%',
     paddingVertical: deviceHeight > 700 ? 12 : 8,
     alignItems: 'center',
-    justifyContent: 'center',
     flexDirection: 'row',
+    justifyContent: 'center',
   },
   text: {
     fontSize: 16,
-    fontWeight: 700,
+    fontWeight: '700',
   },
   filledText: {
     color: colors.WHITE,

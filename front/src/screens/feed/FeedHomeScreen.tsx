@@ -1,10 +1,10 @@
 import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 
-function FeedHomeScreen(){
+function FeedHomeScreen() {
   return (
     <View>
-      <Text>피드페이지</Text>
+      <Text>피드홈</Text>
     </View>
   );
 }

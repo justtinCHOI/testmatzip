@@ -1,4 +1,5 @@
 import {ForwardedRef} from 'react';
+
 function mergeRefs<T>(...refs: ForwardedRef<T>[]) {
   return (node: T) => {
     refs.forEach(ref => {

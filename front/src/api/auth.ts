@@ -8,12 +8,11 @@ type RequestUser = {
 };
 
 const postSignup = async ({email, password}: RequestUser): Promise<void> => {
-  console.log('postSignup ')
   const {data} = await axiosInstance.post('/auth/signup', {
     email,
     password,
   });
-  console.log('postSignup data', data)
+
   return data;
 };
 
@@ -26,13 +25,17 @@ const postLogin = async ({
   email,
   password,
 }: RequestUser): Promise<ResponseToken> => {
-  console.log('postLogin ')
-  const {data} = await axiosInstance.post('/auth/signin', {
-    email,
-    password,
-  });
-  console.log('postLogin data', data)
-  return data;
+  try {
+    const {data} = await axiosInstance.post('/auth/signin', {
+      email,
+      password,
+    });
+    console.log('postLogin data ', data);
+    return data;
+  } catch (error) {
+    console.error('postLogin error', error); // 추가 로그
+    throw error;
+  }
 };
 
 type ResponseProfile = Profile & Category;

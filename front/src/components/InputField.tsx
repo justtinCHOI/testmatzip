@@ -1,20 +1,20 @@
 import React, {ForwardedRef, forwardRef, useRef} from 'react';
 import {
-  StyleSheet,
-  View,
-  Text,
-  TextInputProps,
   Dimensions,
+  StyleSheet,
+  TextInput,
+  View,
+  TextInputProps,
+  Text,
   Pressable,
 } from 'react-native';
-import {TextInput} from 'react-native-gesture-handler';
 import {colors} from '../constants';
-import {mergeRefs} from '../utils';
+import {mergeRefs} from '../utils/common';
 
 interface InputFieldProps extends TextInputProps {
   disabled?: boolean;
-  touched?: boolean;
   error?: string;
+  touched?: boolean;
 }
 
 const deviceHeight = Dimensions.get('screen').height;
