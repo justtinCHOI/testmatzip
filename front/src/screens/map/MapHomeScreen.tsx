@@ -8,8 +8,8 @@ import React, {useEffect, useRef, useState} from 'react';
 import {Pressable, StyleSheet, Text, View} from 'react-native';
 import MapView, {LatLng, PROVIDER_GOOGLE} from 'react-native-maps';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import Geolocation from '@react-native-community/geolocation';
 import useUserLocation from '@/hooks/useUserLocation';
+import usePermission from '@/hooks/usePermission';
 
 type Navigation = CompositeNavigationProp<
   StackNavigationProp<MapStackParamList>,
@@ -20,8 +20,8 @@ function MapHomeScreen() {
   const inset = useSafeAreaInsets();
   const navigation = useNavigation<Navigation>();
   const mapRef = useRef<MapView | null>(null);
-
   const {userLocation, isUserLocationError} = useUserLocation();
+  usePermission('LOCATION');
 
   const handlePressUserLocation = () => {
     if (isUserLocationError) {
