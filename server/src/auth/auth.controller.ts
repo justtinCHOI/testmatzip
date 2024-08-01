@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Get,
+  Logger,
   Patch,
   Post,
   UseGuards,
@@ -18,16 +19,18 @@ import { MarkerColor } from 'src/post/marker-color.enum';
 
 @Controller('auth')
 export class AuthController {
+  private logger = new Logger('AuthController');
   constructor(private authService: AuthService) {}
 
   @Post('/signup')
   signup(@Body(ValidationPipe) authDto: AuthDto) {
-    console.log('signup', authDto);
+    this.logger.log(`Signup attempt with email: ${authDto.email}`);
     return this.authService.signup(authDto);
   }
 
   @Post('/signin')
   signin(@Body(ValidationPipe) authDto: AuthDto) {
+    this.logger.log(`Signin attempt with email: ${authDto.email}`);
     return this.authService.signin(authDto);
   }
 
