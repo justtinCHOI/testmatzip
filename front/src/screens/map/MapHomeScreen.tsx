@@ -21,6 +21,7 @@ import {MainDrawerParamList} from '@/navigations/drawer/MainDrawerNavigator';
 import useUserLocation from '@/hooks/useUserLocation';
 import usePermission from '@/hooks/usePermission';
 import mapStyle from '@/style/mapStyle';
+import CustomMarker from '@/components/CustomMarker';
 
 type Navigation = CompositeNavigationProp<
   StackNavigationProp<MapStackParamList>,
@@ -63,17 +64,24 @@ function MapHomeScreen() {
         showsMyLocationButton={false}
         customMapStyle={mapStyle}
         onLongPress={handleLongPressMapView}>
-        <Marker
-          coordinate={{latitude: 37.421998333333335, longitude: 126.9898962}}
+        <CustomMarker
+          color="RED"
+          coordinate={{
+            latitude: 37.5516032365118,
+            longitude: 126.98989626020192,
+          }}
         />
-        <Marker
-          coordinate={{latitude: 37.431998333333335, longitude: 126.9898962}}
+        <CustomMarker
+          color="BLUE"
+          score={1}
+          coordinate={{
+            latitude: 37.5616032365118,
+            longitude: 126.98989626020192,
+          }}
         />
         {selectLocation && (
           <Callout>
-            <Marker
-          coordinate={selectLocation}
-        />
+            <Marker coordinate={selectLocation} />
           </Callout>
         )}
       </MapView>
