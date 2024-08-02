@@ -10,7 +10,6 @@ function useUserLocation() {
   });
   const [isUserLocationError, setIsUserLocationError] = useState(false);
   const {isComback} = useAppState();
-  console.log('isComback : ', isComback);
 
   useEffect(() => {
     Geolocation.getCurrentPosition(
