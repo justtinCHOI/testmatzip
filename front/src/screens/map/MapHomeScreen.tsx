@@ -1,18 +1,20 @@
-import {colors} from '@/constants';
-import {MainDrawerParamList} from '@/navigations/drawer/MainDrawerNavigator';
-import {MapStackParamList} from '@/navigations/stack/MapStackNavigator';
-import {DrawerNavigationProp} from '@react-navigation/drawer';
-import {CompositeNavigationProp, useNavigation} from '@react-navigation/native';
-import {StackNavigationProp} from '@react-navigation/stack';
 import React, {useRef} from 'react';
-import {Pressable, StyleSheet, View} from 'react-native';
+import {Pressable, StyleSheet, Text, View} from 'react-native';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import useUserLocation from '@/hooks/useUserLocation';
-import usePermission from '@/hooks/usePermission';
-
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
+import useAuth from '@/hooks/queries/useAuth';
+import {colors} from '@/constants';
+import {CompositeNavigationProp, useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {MapStackParamList} from '@/navigations/stack/MapStackNavigator';
+import {DrawerNavigationProp} from '@react-navigation/drawer';
+import {MainDrawerParamList} from '@/navigations/drawer/MainDrawerNavigator';
+import useUserLocation from '@/hooks/useUserLocation';
+import usePermission from '@/hooks/usePermission';
+import mapStyle from '@/style/mapStyle';
 
 type Navigation = CompositeNavigationProp<
   StackNavigationProp<MapStackParamList>,
@@ -30,13 +32,12 @@ function MapHomeScreen() {
     if (isUserLocationError) {
       return;
     }
+
     mapRef.current?.animateToRegion({
       latitude: userLocation.latitude,
       longitude: userLocation.longitude,
-      // latitudeDelta: 0.0922,
-      // longitudeDelta: 0.0421,
-      latitudeDelta: 10,
-      longitudeDelta: 10,
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421,
     });
   };
 
@@ -49,6 +50,7 @@ function MapHomeScreen() {
         showsUserLocation
         followsUserLocation
         showsMyLocationButton={false}
+        customMapStyle={mapStyle}
       />
       <Pressable
         style={[styles.drawerButton, {top: inset.top || 20}]}
