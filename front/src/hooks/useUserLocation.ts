@@ -15,9 +15,11 @@ function useUserLocation() {
     Geolocation.getCurrentPosition(
       info => {
         const {latitude, longitude} = info.coords;
-        console.log('coords : ', latitude, longitude);
-
-        setUserLocation({latitude, longitude});
+        // setUserLocation({latitude, longitude});
+        setUserLocation({
+          latitude: 37.421998333333335,
+          longitude: 126.9898962,
+        });
         setIsUserLocationError(false);
       },
       () => {
