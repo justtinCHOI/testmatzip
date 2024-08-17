@@ -30,7 +30,6 @@ const postLogin = async ({
       email,
       password,
     });
-    console.log('postLogin data ', data);
     return data;
   } catch (error) {
     console.error('postLogin error', error); // 추가 로그
