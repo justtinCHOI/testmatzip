@@ -10,4 +10,4 @@ function useMutateImages(mutationOptions?: UseMutationCustomOptions) {
   });
 }
 
-export default useMutateImages;
+export default useMutateImages;  

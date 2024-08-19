@@ -55,8 +55,6 @@ function AddPostScreen({route, navigation}: AddPostScreenProps) {
   const imagePicker = useImagePicker({
     initialImages: [],
   });
-
-  console.log('imagePicker.imageUris', imagePicker.imageUris);
   usePermission('PHOTO');
 
   const handleChangeDate = (pickedDate: Date) => {
@@ -83,7 +81,7 @@ function AddPostScreen({route, navigation}: AddPostScreenProps) {
       description: addPost.values.description,
       color: markerColor,
       score,
-      imageUris: [],
+      imageUris: imagePicker.imageUris,
     };
 
     createPost.mutate(
